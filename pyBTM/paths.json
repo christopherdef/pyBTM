@@ -1,0 +1,10 @@
+{
+  "all"           : "/largedata/Ukr_tweets.json",
+  "all_pp"        : "/fastdata/chris/ukr_pp.csv",
+  "nonrt"         : "/fastdata/original_ukr_tweets.json",
+  "nonrt_pp"      : "/fastdata/chris/ukr_nonrt_pp_text.txt",
+  "nonrt_pp_info" : "/fastdata/chris/ukr_nonrt_pp_text.txt.info",
+  "srs"           : "/fastdata/chris/srs_data.json",
+  "srs_pp"        : "/fastdata/chris/srs_data_pp.txt",
+  "srs_pp_info"   : "/fastdata/chris/srs_data_pp.txt.info"
+}

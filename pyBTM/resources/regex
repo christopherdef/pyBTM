@@ -1,0 +1,3 @@
+\W             //# gets rid of all non-word characters (must be used with unicode on or this will catch cyrillic unicode as well)
+(\w\d|\d\w){1,}    //# removes alphanumeric strings
+\p{IsCyrillic} //# removes cyrillic letters

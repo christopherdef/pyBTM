@@ -1,0 +1,1 @@
+{"K": 50, "alpha": 1.0, "beta": 0.01, "niter": 50, "home": "", "input": "data/srs_pp.txt", "verbose": false, "fmt": null, "output": null}
