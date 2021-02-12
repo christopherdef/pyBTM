@@ -26,30 +26,3 @@ def get_file_length(path):
     '''
     with open(path, 'r') as file:
         return os.fstat(file.fileno()).st_size
-
-# def get_tweet_iterator(path):
-#     with open(path, 'r') as file:
-#         for line in file:
-#             tweet = json.loads(line)
-#             yield tweet
-#         return None
-
-# # class wrapper for generating tweets from data
-# # currently broken, not worth fixing
-# class tweet_iterator_class():
-#     def __init__(self, path):
-#         self.path = path
-#         self.value = None
-#         self.pos = 0
-
-#     def __next__(self):
-#         return next(self._next_helper())
-
-#     def _next_helper(self):
-#         with open(self.path, 'r') as file:
-#             for line in file:
-#                 tweet = json.loads(line)
-#                 self.pos += 1
-#                 self.value = tweet
-#                 yield tweet
-#             yield False

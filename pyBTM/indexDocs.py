@@ -16,24 +16,23 @@ def indexFile(pt, res_pt, csv=False, csvCol=2):
             print(i, end='\r')
         if csv:
             l = l.split(',')[csvCol]
-            
+
         ws = l.strip().split()
         for w in ws:
             if w not in w2id:
                 w2id[w] = len(w2id)
-                
+
         wids = [w2id[w] for w in ws]
         print(' '.join(map(str, wids)), file=wf)
-        
-    print('index write to: '+str(res_pt))
 
+    print('index write to: '+str(res_pt))
 
 def write_w2id(res_pt):
     print('vocab write to: '+str(res_pt))
     wf = open(res_pt, 'w')
     for w, wid in sorted(w2id.items(), key=lambda d:d[1]):
         print('%d\t%s' % (wid, w), file=wf)
-        
+
 if __name__ == '__main__':
     if len(sys.argv) < 4:
         print('Usage: python %s <doc_pt> <dwid_pt> <voca_pt>' % sys.argv[0])
@@ -41,13 +40,13 @@ if __name__ == '__main__':
         print('\tdwid_pt   output docs after indexing, each line is a doc with the format "wordId wordId..."')
         print('\tvoca_pt   output vocabulary file, each line is a word with the format "wordId    word"')
         exit(1)
-        
+
     doc_pt = sys.argv[1]
     dwid_pt = sys.argv[2]
     voca_pt = sys.argv[3]
     fmt = sys.argv[4] if len(sys.argv) > 4 else None
     csv_col = sys.argv[5] if len(sys.argv) > 5 else 2
-    
+
     if fmt == 'csv':
         print("CSV!!")
         csv_flag = True

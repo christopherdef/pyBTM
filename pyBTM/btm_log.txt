@@ -6398,3 +6398,593 @@ cost 16.997229s
 
 10-21-20/12:13:37	 learning complete
 10-21-20/12:25:36	 unpacking vocab
+02-11-21/14:57:20	 ========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/14:57:20	 K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/14:57:20	 ========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/14:57:20	 indexing already complete
+02-11-21/14:57:20	 indexing complete
+02-11-21/14:57:20	 ========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/14:57:20	 wc -l /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/voca.txt
+02-11-21/14:57:20	 make: Entering directory '/home/chris/repos/pyBTM/pyBTM/BTM/src'
+make: Nothing to be done for 'all'.
+make: Leaving directory '/home/chris/repos/pyBTM/pyBTM/BTM/src'
+
+02-11-21/14:57:20	 /home/chris/repos/pyBTM/pyBTM/BTM/src/btm est 5 16444 10.0 0.01 100 501 /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/doc_wids.txt /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/14:57:25	 Run BTM, K=5, W=16444, alpha=10, beta=0.01, n_iter=100, save_step=501 ====
+load docs: /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/doc_wids.txt
+Begin iteration
+iter 1/100iter 2/100iter 3/100iter 4/100iter 5/100iter 6/100iter 7/100iter 8/100iter 9/100iter 10/100iter 11/100iter 12/100iter 13/100iter 14/100iter 15/100iter 16/100iter 17/100iter 18/100iter 19/100iter 20/100iter 21/100iter 22/100iter 23/100iter 24/100iter 25/100iter 26/100iter 27/100iter 28/100iter 29/100iter 30/100iter 31/100iter 32/100iter 33/100iter 34/100iter 35/100iter 36/100iter 37/100iter 38/100iter 39/100iter 40/100iter 41/100iter 42/100iter 43/100iter 44/100iter 45/100iter 46/100iter 47/100iter 48/100iter 49/100iter 50/100iter 51/100iter 52/100iter 53/100iter 54/100iter 55/100iter 56/100iter 57/100iter 58/100iter 59/100iter 60/100iter 61/100iter 62/100iter 63/100iter 64/100iter 65/100iter 66/100iter 67/100iter 68/100iter 69/100iter 70/100iter 71/100iter 72/100iter 73/100iter 74/100iter 75/100iter 76/100iter 77/100iter 78/100iter 79/100iter 80/100iter 81/100iter 82/100iter 83/100iter 84/100iter 85/100iter 86/100iter 87/100iter 88/100iter 89/100iter 90/100iter 91/100iter 92/100iter 93/100iter 94/100iter 95/100iter 96/100iter 97/100iter 98/100iter 99/100iter 100/100/home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5
+
+write p(z): /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+write p(w|z): /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+cost 5.234476s
+
+02-11-21/14:57:25	 learning complete
+02-11-21/14:57:25	 ========== Infer P(z|d) (k5_n100_a10_b0.01) ==========
+02-11-21/14:57:25	 /home/chris/repos/pyBTM/pyBTM/BTM/src/btm inf sum_b 5 10.0 0.01 100 /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/doc_wids.txt /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/14:57:25	 Run inference:K=5, type sum_b ====
+load p(z):/home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+load p(w|z):/home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+n(z)=5, n(w)=16444
+Infer p(z|d) for docs in: /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/doc_wids.txt
+write p(z|d): /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz_d
+
+02-11-21/14:57:25	 inference complete
+02-11-21/14:57:25	 unpacking vocab
+02-11-21/14:59:18	 ========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/14:59:18	 K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/14:59:18	 ========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/14:59:18	 indexing already complete
+02-11-21/14:59:18	 indexing complete
+02-11-21/14:59:18	 ========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/14:59:20	 wc -l /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/voca.txt
+02-11-21/14:59:20	 make: Entering directory '/home/chris/repos/pyBTM/pyBTM/BTM/src'
+make: Nothing to be done for 'all'.
+make: Leaving directory '/home/chris/repos/pyBTM/pyBTM/BTM/src'
+
+02-11-21/14:59:20	 /home/chris/repos/pyBTM/pyBTM/BTM/src/btm est 5 16444 10.0 0.01 100 501 /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/doc_wids.txt /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/14:59:25	 Run BTM, K=5, W=16444, alpha=10, beta=0.01, n_iter=100, save_step=501 ====
+load docs: /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/doc_wids.txt
+Begin iteration
+iter 1/100iter 2/100iter 3/100iter 4/100iter 5/100iter 6/100iter 7/100iter 8/100iter 9/100iter 10/100iter 11/100iter 12/100iter 13/100iter 14/100iter 15/100iter 16/100iter 17/100iter 18/100iter 19/100iter 20/100iter 21/100iter 22/100iter 23/100iter 24/100iter 25/100iter 26/100iter 27/100iter 28/100iter 29/100iter 30/100iter 31/100iter 32/100iter 33/100iter 34/100iter 35/100iter 36/100iter 37/100iter 38/100iter 39/100iter 40/100iter 41/100iter 42/100iter 43/100iter 44/100iter 45/100iter 46/100iter 47/100iter 48/100iter 49/100iter 50/100iter 51/100iter 52/100iter 53/100iter 54/100iter 55/100iter 56/100iter 57/100iter 58/100iter 59/100iter 60/100iter 61/100iter 62/100iter 63/100iter 64/100iter 65/100iter 66/100iter 67/100iter 68/100iter 69/100iter 70/100iter 71/100iter 72/100iter 73/100iter 74/100iter 75/100iter 76/100iter 77/100iter 78/100iter 79/100iter 80/100iter 81/100iter 82/100iter 83/100iter 84/100iter 85/100iter 86/100iter 87/100iter 88/100iter 89/100iter 90/100iter 91/100iter 92/100iter 93/100iter 94/100iter 95/100iter 96/100iter 97/100iter 98/100iter 99/100iter 100/100/home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5
+
+write p(z): /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+write p(w|z): /home/chris/repos/pyBTM/pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+cost 5.245470s
+
+02-11-21/14:59:25	 learning complete
+02-11-21/14:59:27	 inference already complete
+02-11-21/14:59:27	 unpacking vocab
+02-11-21/15:00:01	 ========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/15:00:01	 K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/15:00:01	 ========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/15:00:01	 indexing already complete
+02-11-21/15:00:01	 indexing complete
+02-11-21/15:00:01	 ========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/15:00:01	 learning already complete
+02-11-21/15:00:02	 inference already complete
+02-11-21/15:00:02	 unpacking vocab
+02-11-21/15:00:27	 ========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/15:00:27	 K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/15:00:27	 ========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/15:00:27	 indexing already complete
+02-11-21/15:00:27	 indexing complete
+02-11-21/15:00:27	 ========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/15:00:34	 learning already complete
+02-11-21/15:00:34	 inference already complete
+02-11-21/15:00:34	 unpacking vocab
+02-11-21/15:43:34	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/15:43:34	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/15:44:12	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/15:44:12	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/15:44:58	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/15:44:58	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/15:44:58	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/15:45:36	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/15:45:36	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/15:45:36	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/15:45:36	python ../pyBTMindexDocs.py data/pp_tweets.txt ../pyBTMoutput/pp_tweets_output/doc_wids.txt ../pyBTMoutput/pp_tweets_output/voca.txt
+02-11-21/15:45:36	
+02-11-21/15:46:50	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/15:46:50	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/15:46:50	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/15:46:50	python ../pyBTMindexDocs.py data/pp_tweets.txt ../pyBTMoutput/pp_tweets_output/doc_wids.txt ../pyBTMoutput/pp_tweets_output/voca.txt
+02-11-21/15:46:50	
+02-11-21/15:47:05	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/15:47:05	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/15:47:06	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/15:47:06	indexing already complete
+02-11-21/15:47:06	indexing complete
+02-11-21/15:47:06	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/15:47:08	learning already complete
+02-11-21/15:47:09	inference already complete
+02-11-21/15:47:09	unpacking vocab
+02-11-21/15:47:13	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/15:47:13	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/15:47:13	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/15:47:13	indexing already complete
+02-11-21/15:47:13	indexing complete
+02-11-21/15:47:13	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/15:47:14	wc -l ../pyBTM/output/pp_tweets_output/voca.txt
+02-11-21/15:47:14	make: Entering directory '/home/chris/repos/pyBTM/pyBTM/BTM/src'
+make: Nothing to be done for 'all'.
+make: Leaving directory '/home/chris/repos/pyBTM/pyBTM/BTM/src'
+
+02-11-21/15:47:14	../pyBTM/BTM/src/btm est 5 16444 10.0 0.01 100 501 ../pyBTM/output/pp_tweets_output/doc_wids.txt ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/15:47:19	Run BTM, K=5, W=16444, alpha=10, beta=0.01, n_iter=100, save_step=501 ====
+load docs: ../pyBTM/output/pp_tweets_output/doc_wids.txt
+Begin iteration
+iter 1/100iter 2/100iter 3/100iter 4/100iter 5/100iter 6/100iter 7/100iter 8/100iter 9/100iter 10/100iter 11/100iter 12/100iter 13/100iter 14/100iter 15/100iter 16/100iter 17/100iter 18/100iter 19/100iter 20/100iter 21/100iter 22/100iter 23/100iter 24/100iter 25/100iter 26/100iter 27/100iter 28/100iter 29/100iter 30/100iter 31/100iter 32/100iter 33/100iter 34/100iter 35/100iter 36/100iter 37/100iter 38/100iter 39/100iter 40/100iter 41/100iter 42/100iter 43/100iter 44/100iter 45/100iter 46/100iter 47/100iter 48/100iter 49/100iter 50/100iter 51/100iter 52/100iter 53/100iter 54/100iter 55/100iter 56/100iter 57/100iter 58/100iter 59/100iter 60/100iter 61/100iter 62/100iter 63/100iter 64/100iter 65/100iter 66/100iter 67/100iter 68/100iter 69/100iter 70/100iter 71/100iter 72/100iter 73/100iter 74/100iter 75/100iter 76/100iter 77/100iter 78/100iter 79/100iter 80/100iter 81/100iter 82/100iter 83/100iter 84/100iter 85/100iter 86/100iter 87/100iter 88/100iter 89/100iter 90/100iter 91/100iter 92/100iter 93/100iter 94/100iter 95/100iter 96/100iter 97/100iter 98/100iter 99/100iter 100/100../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5
+
+write p(z): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+write p(w|z): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+cost 5.052445s
+
+02-11-21/15:47:19	learning complete
+02-11-21/15:47:20	========== Infer P(z|d) (k5_n100_a10_b0.01) ==========
+02-11-21/15:47:20	../pyBTM/BTM/src/btm inf sum_b 5 10.0 0.01 100 ../pyBTM/output/pp_tweets_output/doc_wids.txt ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/15:47:20	Run inference:K=5, type sum_b ====
+load p(z):../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+load p(w|z):../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+n(z)=5, n(w)=16444
+Infer p(z|d) for docs in: ../pyBTM/output/pp_tweets_output/doc_wids.txt
+write p(z|d): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz_d
+
+02-11-21/15:47:20	inference complete
+02-11-21/15:47:20	unpacking vocab
+02-11-21/16:00:12	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/16:00:12	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/16:00:12	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/16:00:12	python ../pyBTM/indexDocs.py data/pp_tweets.txt ../pyBTM/output/pp_tweets_output/doc_wids.txt ../pyBTM/output/pp_tweets_output/voca.txt
+02-11-21/16:00:12	index file: data/pp_tweets.txt
+10000index write to: ../pyBTM/output/pp_tweets_output/doc_wids.txt
+n(w)=16444
+vocab write to: ../pyBTM/output/pp_tweets_output/voca.txt
+
+02-11-21/16:00:12	indexing complete
+02-11-21/16:00:12	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/16:00:12	wc -l ../pyBTM/output/pp_tweets_output/voca.txt
+02-11-21/16:00:12	make: Entering directory '/home/chris/repos/pyBTM/pyBTM/BTM/src'
+make: Nothing to be done for 'all'.
+make: Leaving directory '/home/chris/repos/pyBTM/pyBTM/BTM/src'
+
+02-11-21/16:00:12	../pyBTM/BTM/src/btm est 5 16444 10.0 0.01 100 501 ../pyBTM/output/pp_tweets_output/doc_wids.txt ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/16:00:19	Run BTM, K=5, W=16444, alpha=10, beta=0.01, n_iter=100, save_step=501 ====
+load docs: ../pyBTM/output/pp_tweets_output/doc_wids.txt
+Begin iteration
+iter 1/100iter 2/100iter 3/100iter 4/100iter 5/100iter 6/100iter 7/100iter 8/100iter 9/100iter 10/100iter 11/100iter 12/100iter 13/100iter 14/100iter 15/100iter 16/100iter 17/100iter 18/100iter 19/100iter 20/100iter 21/100iter 22/100iter 23/100iter 24/100iter 25/100iter 26/100iter 27/100iter 28/100iter 29/100iter 30/100iter 31/100iter 32/100iter 33/100iter 34/100iter 35/100iter 36/100iter 37/100iter 38/100iter 39/100iter 40/100iter 41/100iter 42/100iter 43/100iter 44/100iter 45/100iter 46/100iter 47/100iter 48/100iter 49/100iter 50/100iter 51/100iter 52/100iter 53/100iter 54/100iter 55/100iter 56/100iter 57/100iter 58/100iter 59/100iter 60/100iter 61/100iter 62/100iter 63/100iter 64/100iter 65/100iter 66/100iter 67/100iter 68/100iter 69/100iter 70/100iter 71/100iter 72/100iter 73/100iter 74/100iter 75/100iter 76/100iter 77/100iter 78/100iter 79/100iter 80/100iter 81/100iter 82/100iter 83/100iter 84/100iter 85/100iter 86/100iter 87/100iter 88/100iter 89/100iter 90/100iter 91/100iter 92/100iter 93/100iter 94/100iter 95/100iter 96/100iter 97/100iter 98/100iter 99/100iter 100/100../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5
+
+write p(z): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+write p(w|z): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+cost 6.838597s
+
+02-11-21/16:00:19	learning complete
+02-11-21/16:00:19	========== Infer P(z|d) (k5_n100_a10_b0.01) ==========
+02-11-21/16:00:19	../pyBTM/BTM/src/btm inf sum_b 5 10.0 0.01 100 ../pyBTM/output/pp_tweets_output/doc_wids.txt ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/16:00:20	Run inference:K=5, type sum_b ====
+load p(z):../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+load p(w|z):../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+n(z)=5, n(w)=16444
+Infer p(z|d) for docs in: ../pyBTM/output/pp_tweets_output/doc_wids.txt
+write p(z|d): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz_d
+
+02-11-21/16:00:20	inference complete
+02-11-21/16:00:20	unpacking vocab
+02-11-21/16:30:24	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/16:30:24	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/16:30:24	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/16:30:24	indexing already complete
+02-11-21/16:30:24	indexing complete
+02-11-21/16:30:24	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/16:30:26	learning already complete
+02-11-21/16:30:26	inference already complete
+02-11-21/16:30:26	unpacking vocab
+02-11-21/17:46:07	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/17:46:07	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/17:46:51	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/17:46:51	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/17:46:51	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/17:46:51	indexing already complete
+02-11-21/17:46:51	indexing complete
+02-11-21/17:46:51	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/17:46:53	../pyBTM/BTM/src/btm est 5 16444 10.0 0.01 100 501 ../pyBTM/output/pp_tweets_output/doc_wids.txt ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/17:47:05	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/17:47:05	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/17:47:05	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/17:47:05	indexing already complete
+02-11-21/17:47:05	indexing complete
+02-11-21/17:47:05	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/17:47:06	../pyBTM/BTM/btm est 5 16444 10.0 0.01 100 501 ../pyBTM/output/pp_tweets_output/doc_wids.txt ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/17:47:11	Run BTM, K=5, W=16444, alpha=10, beta=0.01, n_iter=100, save_step=501 ====
+load docs: ../pyBTM/output/pp_tweets_output/doc_wids.txt
+Begin iteration
+iter 1/100iter 2/100iter 3/100iter 4/100iter 5/100iter 6/100iter 7/100iter 8/100iter 9/100iter 10/100iter 11/100iter 12/100iter 13/100iter 14/100iter 15/100iter 16/100iter 17/100iter 18/100iter 19/100iter 20/100iter 21/100iter 22/100iter 23/100iter 24/100iter 25/100iter 26/100iter 27/100iter 28/100iter 29/100iter 30/100iter 31/100iter 32/100iter 33/100iter 34/100iter 35/100iter 36/100iter 37/100iter 38/100iter 39/100iter 40/100iter 41/100iter 42/100iter 43/100iter 44/100iter 45/100iter 46/100iter 47/100iter 48/100iter 49/100iter 50/100iter 51/100iter 52/100iter 53/100iter 54/100iter 55/100iter 56/100iter 57/100iter 58/100iter 59/100iter 60/100iter 61/100iter 62/100iter 63/100iter 64/100iter 65/100iter 66/100iter 67/100iter 68/100iter 69/100iter 70/100iter 71/100iter 72/100iter 73/100iter 74/100iter 75/100iter 76/100iter 77/100iter 78/100iter 79/100iter 80/100iter 81/100iter 82/100iter 83/100iter 84/100iter 85/100iter 86/100iter 87/100iter 88/100iter 89/100iter 90/100iter 91/100iter 92/100iter 93/100iter 94/100iter 95/100iter 96/100iter 97/100iter 98/100iter 99/100iter 100/100../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5
+
+write p(z): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+write p(w|z): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+cost 5.293319s
+
+02-11-21/17:47:11	learning complete
+02-11-21/17:47:12	========== Infer P(z|d) (k5_n100_a10_b0.01) ==========
+02-11-21/17:47:12	../pyBTM/BTM/btm inf sum_b 5 10.0 0.01 100 ../pyBTM/output/pp_tweets_output/doc_wids.txt ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/17:47:12	Run inference:K=5, type sum_b ====
+load p(z):../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+load p(w|z):../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+n(z)=5, n(w)=16444
+Infer p(z|d) for docs in: ../pyBTM/output/pp_tweets_output/doc_wids.txt
+write p(z|d): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz_d
+
+02-11-21/17:47:12	inference complete
+02-11-21/17:47:12	unpacking vocab
+02-11-21/17:47:41	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/17:47:41	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/17:47:41	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/17:47:41	indexing already complete
+02-11-21/17:47:41	indexing complete
+02-11-21/17:47:41	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/17:47:41	learning already complete
+02-11-21/17:47:42	inference already complete
+02-11-21/17:47:42	unpacking vocab
+02-11-21/17:47:42	Loading documents
+02-11-21/17:48:17	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/17:48:17	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/17:48:17	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/17:48:17	indexing already complete
+02-11-21/17:48:17	indexing complete
+02-11-21/17:48:17	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/17:48:17	learning already complete
+02-11-21/17:48:18	inference already complete
+02-11-21/17:48:18	unpacking vocab
+02-11-21/17:48:18	Loading documents
+02-11-21/17:48:18	Building gensim dictionary
+02-11-21/17:48:49	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/17:48:49	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/17:48:49	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/17:48:49	indexing already complete
+02-11-21/17:48:49	indexing complete
+02-11-21/17:48:49	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/17:48:50	learning already complete
+02-11-21/17:48:50	inference already complete
+02-11-21/17:48:50	unpacking vocab
+02-11-21/17:48:50	Loading documents
+02-11-21/17:48:50	Building gensim dictionary
+02-11-21/17:49:17	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/17:49:17	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/17:49:17	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/17:49:17	indexing already complete
+02-11-21/17:49:17	indexing complete
+02-11-21/17:49:17	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/17:49:18	learning already complete
+02-11-21/17:49:18	inference already complete
+02-11-21/17:49:18	unpacking vocab
+02-11-21/17:49:18	Loading documents
+02-11-21/17:49:18	unpacking doc_wids
+02-11-21/17:49:18	Building gensim dictionary
+02-11-21/17:49:19	Loading topics for k5_n100_a10_b0.01
+02-11-21/17:53:33	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/17:53:33	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/17:53:33	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/17:53:33	indexing already complete
+02-11-21/17:53:33	indexing complete
+02-11-21/17:53:33	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/17:53:35	learning already complete
+02-11-21/17:53:35	inference already complete
+02-11-21/17:53:35	unpacking vocab
+02-11-21/17:53:35	Loading documents
+02-11-21/17:53:35	unpacking doc_wids
+02-11-21/17:53:35	Building gensim dictionary
+02-11-21/17:53:35	Loading topics for k5_n100_a10_b0.01
+02-11-21/17:53:35	unpacking vocab
+02-11-21/17:53:35	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/17:53:54	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/17:53:54	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/17:53:55	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/17:53:55	indexing already complete
+02-11-21/17:53:55	indexing complete
+02-11-21/17:53:55	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/17:53:56	learning already complete
+02-11-21/17:53:57	inference already complete
+02-11-21/17:53:57	unpacking vocab
+02-11-21/17:53:57	Loading documents
+02-11-21/17:53:57	unpacking doc_wids
+02-11-21/17:53:57	Building gensim dictionary
+02-11-21/17:53:57	Loading topics for k5_n100_a10_b0.01
+02-11-21/17:53:57	unpacking vocab
+02-11-21/17:53:58	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/17:53:58	Calculating coherence c_v value
+02-11-21/17:53:58	Building coherence model u_mass for k5_n100_a10_b0.01
+02-11-21/17:53:58	Calculating coherence u_mass value
+02-11-21/17:54:13	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/17:54:13	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/17:54:13	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/17:54:13	indexing already complete
+02-11-21/17:54:13	indexing complete
+02-11-21/17:54:13	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/17:54:14	learning already complete
+02-11-21/17:54:14	inference already complete
+02-11-21/17:54:14	unpacking vocab
+02-11-21/17:54:14	Loading documents
+02-11-21/17:54:14	unpacking doc_wids
+02-11-21/17:54:14	Building gensim dictionary
+02-11-21/17:54:15	Loading topics for k5_n100_a10_b0.01
+02-11-21/17:54:15	unpacking vocab
+02-11-21/17:54:15	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/17:54:15	Calculating coherence c_v value
+02-11-21/17:54:15	Building coherence model u_mass for k5_n100_a10_b0.01
+02-11-21/17:54:15	Calculating coherence u_mass value
+02-11-21/17:56:07	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/17:56:07	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/17:56:07	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/17:56:07	indexing already complete
+02-11-21/17:56:07	indexing complete
+02-11-21/17:56:07	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/17:56:07	learning already complete
+02-11-21/17:56:07	inference already complete
+02-11-21/17:56:07	unpacking vocab
+02-11-21/17:56:07	Loading documents
+02-11-21/17:56:07	unpacking doc_wids
+02-11-21/17:56:07	Building gensim dictionary
+02-11-21/17:56:08	Loading topics for k5_n100_a10_b0.01
+02-11-21/17:56:08	unpacking vocab
+02-11-21/17:56:08	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/17:56:08	Calculating coherence c_v value
+02-11-21/17:56:08	Building coherence model u_mass for k5_n100_a10_b0.01
+02-11-21/17:56:08	Calculating coherence u_mass value
+02-11-21/17:58:15	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/17:58:15	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/17:58:15	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/17:58:15	indexing already complete
+02-11-21/17:58:15	indexing complete
+02-11-21/17:58:15	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/17:58:15	learning already complete
+02-11-21/17:58:16	inference already complete
+02-11-21/17:58:16	unpacking vocab
+02-11-21/17:58:16	Loading documents
+02-11-21/17:58:16	unpacking doc_wids
+02-11-21/17:58:16	Building gensim dictionary
+02-11-21/17:58:16	Loading topics for k5_n100_a10_b0.01
+02-11-21/17:58:16	unpacking vocab
+02-11-21/17:58:16	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/17:58:16	Calculating coherence c_v value
+02-11-21/17:58:17	Building coherence model u_mass for k5_n100_a10_b0.01
+02-11-21/17:58:17	Calculating coherence u_mass value
+02-11-21/17:59:57	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/17:59:57	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/17:59:57	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/17:59:57	indexing already complete
+02-11-21/17:59:57	indexing complete
+02-11-21/17:59:57	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/17:59:57	learning already complete
+02-11-21/17:59:57	inference already complete
+02-11-21/17:59:57	unpacking vocab
+02-11-21/17:59:57	Loading documents
+02-11-21/17:59:57	unpacking doc_wids
+02-11-21/17:59:57	Building gensim dictionary
+02-11-21/17:59:57	Loading topics for k5_n100_a10_b0.01
+02-11-21/17:59:57	unpacking vocab
+02-11-21/17:59:57	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/17:59:57	Calculating coherence c_v value
+02-11-21/17:59:58	Building coherence model u_mass for k5_n100_a10_b0.01
+02-11-21/17:59:58	Calculating coherence u_mass value
+02-11-21/18:00:48	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/18:00:48	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/18:00:48	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/18:00:48	indexing already complete
+02-11-21/18:00:48	indexing complete
+02-11-21/18:00:48	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/18:00:48	../pyBTM/BTM/btm est 5 16444 10.0 0.01 100 501 ../pyBTM/output/pp_tweets_output/doc_wids.txt ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/18:00:54	Run BTM, K=5, W=16444, alpha=10, beta=0.01, n_iter=100, save_step=501 ====
+load docs: ../pyBTM/output/pp_tweets_output/doc_wids.txt
+Begin iteration
+iter 1/100iter 2/100iter 3/100iter 4/100iter 5/100iter 6/100iter 7/100iter 8/100iter 9/100iter 10/100iter 11/100iter 12/100iter 13/100iter 14/100iter 15/100iter 16/100iter 17/100iter 18/100iter 19/100iter 20/100iter 21/100iter 22/100iter 23/100iter 24/100iter 25/100iter 26/100iter 27/100iter 28/100iter 29/100iter 30/100iter 31/100iter 32/100iter 33/100iter 34/100iter 35/100iter 36/100iter 37/100iter 38/100iter 39/100iter 40/100iter 41/100iter 42/100iter 43/100iter 44/100iter 45/100iter 46/100iter 47/100iter 48/100iter 49/100iter 50/100iter 51/100iter 52/100iter 53/100iter 54/100iter 55/100iter 56/100iter 57/100iter 58/100iter 59/100iter 60/100iter 61/100iter 62/100iter 63/100iter 64/100iter 65/100iter 66/100iter 67/100iter 68/100iter 69/100iter 70/100iter 71/100iter 72/100iter 73/100iter 74/100iter 75/100iter 76/100iter 77/100iter 78/100iter 79/100iter 80/100iter 81/100iter 82/100iter 83/100iter 84/100iter 85/100iter 86/100iter 87/100iter 88/100iter 89/100iter 90/100iter 91/100iter 92/100iter 93/100iter 94/100iter 95/100iter 96/100iter 97/100iter 98/100iter 99/100iter 100/100../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5
+
+write p(z): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+write p(w|z): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+cost 5.308672s
+
+02-11-21/18:00:54	learning complete
+02-11-21/18:00:54	========== Infer P(z|d) (k5_n100_a10_b0.01) ==========
+02-11-21/18:00:54	../pyBTM/BTM/btm inf sum_b 5 10.0 0.01 100 ../pyBTM/output/pp_tweets_output/doc_wids.txt ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/18:00:54	Run inference:K=5, type sum_b ====
+load p(z):../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+load p(w|z):../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+n(z)=5, n(w)=16444
+Infer p(z|d) for docs in: ../pyBTM/output/pp_tweets_output/doc_wids.txt
+write p(z|d): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz_d
+
+02-11-21/18:00:54	inference complete
+02-11-21/18:00:54	unpacking vocab
+02-11-21/18:00:54	Loading documents
+02-11-21/18:00:54	unpacking doc_wids
+02-11-21/18:00:54	Building gensim dictionary
+02-11-21/18:00:54	Loading topics for k5_n100_a10_b0.01
+02-11-21/18:00:54	unpacking vocab
+02-11-21/18:00:54	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/18:00:54	Calculating coherence c_v value
+02-11-21/18:00:55	Building coherence model u_mass for k5_n100_a10_b0.01
+02-11-21/18:00:55	Calculating coherence u_mass value
+02-11-21/18:06:29	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/18:06:29	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/18:06:37	unpacking vocab
+02-11-21/21:39:46	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/21:39:46	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/21:39:46	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/21:39:46	indexing already complete
+02-11-21/21:39:46	indexing complete
+02-11-21/21:39:46	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/21:39:46	../pyBTM/BTM/btm est 5 16444 10.0 0.01 100 501 ../pyBTM/output/pp_tweets_output/doc_wids.txt ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/21:39:56	Run BTM, K=5, W=16444, alpha=10, beta=0.01, n_iter=100, save_step=501 ====
+load docs: ../pyBTM/output/pp_tweets_output/doc_wids.txt
+Begin iteration
+iter 1/100iter 2/100iter 3/100iter 4/100iter 5/100iter 6/100iter 7/100iter 8/100iter 9/100iter 10/100iter 11/100iter 12/100iter 13/100iter 14/100iter 15/100iter 16/100iter 17/100iter 18/100iter 19/100iter 20/100iter 21/100iter 22/100iter 23/100iter 24/100iter 25/100iter 26/100iter 27/100iter 28/100iter 29/100iter 30/100iter 31/100iter 32/100iter 33/100iter 34/100iter 35/100iter 36/100iter 37/100iter 38/100iter 39/100iter 40/100iter 41/100iter 42/100iter 43/100iter 44/100iter 45/100iter 46/100iter 47/100iter 48/100iter 49/100iter 50/100iter 51/100iter 52/100iter 53/100iter 54/100iter 55/100iter 56/100iter 57/100iter 58/100iter 59/100iter 60/100iter 61/100iter 62/100iter 63/100iter 64/100iter 65/100iter 66/100iter 67/100iter 68/100iter 69/100iter 70/100iter 71/100iter 72/100iter 73/100iter 74/100iter 75/100iter 76/100iter 77/100iter 78/100iter 79/100iter 80/100iter 81/100iter 82/100iter 83/100iter 84/100iter 85/100iter 86/100iter 87/100iter 88/100iter 89/100iter 90/100iter 91/100iter 92/100iter 93/100iter 94/100iter 95/100iter 96/100iter 97/100iter 98/100iter 99/100iter 100/100../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5
+
+write p(z): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+write p(w|z): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+cost 9.850253s
+
+02-11-21/21:39:56	learning complete
+02-11-21/21:39:56	========== Infer P(z|d) (k5_n100_a10_b0.01) ==========
+02-11-21/21:39:56	../pyBTM/BTM/btm inf sum_b 5 10.0 0.01 100 ../pyBTM/output/pp_tweets_output/doc_wids.txt ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/21:39:57	Run inference:K=5, type sum_b ====
+load p(z):../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+load p(w|z):../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+n(z)=5, n(w)=16444
+Infer p(z|d) for docs in: ../pyBTM/output/pp_tweets_output/doc_wids.txt
+write p(z|d): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz_d
+
+02-11-21/21:39:57	inference complete
+02-11-21/21:39:57	unpacking vocab
+02-11-21/21:39:57	Loading documents
+02-11-21/21:39:57	unpacking doc_wids
+02-11-21/21:39:57	Building gensim dictionary
+02-11-21/21:39:58	Loading topics for k5_n100_a10_b0.01
+02-11-21/21:39:58	unpacking vocab
+02-11-21/21:39:58	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/21:39:58	Calculating coherence c_v value
+02-11-21/21:39:59	Building coherence model u_mass for k5_n100_a10_b0.01
+02-11-21/21:39:59	Calculating coherence u_mass value
+02-11-21/21:40:14	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/21:40:14	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/21:40:14	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/21:40:14	indexing already complete
+02-11-21/21:40:14	indexing complete
+02-11-21/21:40:14	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/21:40:14	../pyBTM/BTM/btm est 5 16444 10.0 0.01 100 501 ../pyBTM/output/pp_tweets_output/doc_wids.txt ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/21:40:22	Run BTM, K=5, W=16444, alpha=10, beta=0.01, n_iter=100, save_step=501 ====
+load docs: ../pyBTM/output/pp_tweets_output/doc_wids.txt
+Begin iteration
+iter 1/100iter 2/100iter 3/100iter 4/100iter 5/100iter 6/100iter 7/100iter 8/100iter 9/100iter 10/100iter 11/100iter 12/100iter 13/100iter 14/100iter 15/100iter 16/100iter 17/100iter 18/100iter 19/100iter 20/100iter 21/100iter 22/100iter 23/100iter 24/100iter 25/100iter 26/100iter 27/100iter 28/100iter 29/100iter 30/100iter 31/100iter 32/100iter 33/100iter 34/100iter 35/100iter 36/100iter 37/100iter 38/100iter 39/100iter 40/100iter 41/100iter 42/100iter 43/100iter 44/100iter 45/100iter 46/100iter 47/100iter 48/100iter 49/100iter 50/100iter 51/100iter 52/100iter 53/100iter 54/100iter 55/100iter 56/100iter 57/100iter 58/100iter 59/100iter 60/100iter 61/100iter 62/100iter 63/100iter 64/100iter 65/100iter 66/100iter 67/100iter 68/100iter 69/100iter 70/100iter 71/100iter 72/100iter 73/100iter 74/100iter 75/100iter 76/100iter 77/100iter 78/100iter 79/100iter 80/100iter 81/100iter 82/100iter 83/100iter 84/100iter 85/100iter 86/100iter 87/100iter 88/100iter 89/100iter 90/100iter 91/100iter 92/100iter 93/100iter 94/100iter 95/100iter 96/100iter 97/100iter 98/100iter 99/100iter 100/100../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5
+
+write p(z): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+write p(w|z): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+cost 7.586912s
+
+02-11-21/21:40:22	learning complete
+02-11-21/21:40:22	========== Infer P(z|d) (k5_n100_a10_b0.01) ==========
+02-11-21/21:40:22	../pyBTM/BTM/btm inf sum_b 5 10.0 0.01 100 ../pyBTM/output/pp_tweets_output/doc_wids.txt ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/
+02-11-21/21:40:22	Run inference:K=5, type sum_b ====
+load p(z):../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz
+load p(w|z):../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pw_z
+n(z)=5, n(w)=16444
+Infer p(z|d) for docs in: ../pyBTM/output/pp_tweets_output/doc_wids.txt
+write p(z|d): ../pyBTM/output/pp_tweets_output/model/k5_n100_a10_b0.01/k5_n100_a10_b0.01.pz_d
+
+02-11-21/21:40:22	inference complete
+02-11-21/21:40:22	unpacking vocab
+02-11-21/21:40:22	Loading documents
+02-11-21/21:40:22	unpacking doc_wids
+02-11-21/21:40:22	Building gensim dictionary
+02-11-21/21:40:23	Loading topics for k5_n100_a10_b0.01
+02-11-21/21:40:23	unpacking vocab
+02-11-21/21:40:23	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/21:40:23	Calculating coherence c_v value
+02-11-21/21:40:24	Building coherence model u_mass for k5_n100_a10_b0.01
+02-11-21/21:40:24	Calculating coherence u_mass value
+02-11-21/21:42:09	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/21:42:09	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/21:42:09	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/21:42:09	indexing already complete
+02-11-21/21:42:10	indexing complete
+02-11-21/21:42:10	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/21:42:10	learning already complete
+02-11-21/21:42:10	inference already complete
+02-11-21/21:42:10	unpacking vocab
+02-11-21/21:42:10	Loading documents
+02-11-21/21:42:10	unpacking doc_wids
+02-11-21/21:42:10	Building gensim dictionary
+02-11-21/21:42:10	Loading topics for k5_n100_a10_b0.01
+02-11-21/21:42:10	unpacking vocab
+02-11-21/21:42:10	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/21:42:11	Calculating coherence c_v value
+02-11-21/21:42:11	Building coherence model u_mass for k5_n100_a10_b0.01
+02-11-21/21:42:12	Calculating coherence u_mass value
+02-11-21/21:43:00	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/21:43:00	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/21:43:00	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/21:43:00	indexing already complete
+02-11-21/21:43:00	indexing complete
+02-11-21/21:43:00	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/21:43:00	learning already complete
+02-11-21/21:43:00	inference already complete
+02-11-21/21:43:00	unpacking vocab
+02-11-21/21:43:00	Loading documents
+02-11-21/21:43:00	unpacking doc_wids
+02-11-21/21:43:01	Building gensim dictionary
+02-11-21/21:43:01	Loading topics for k5_n100_a10_b0.01
+02-11-21/21:43:01	unpacking vocab
+02-11-21/21:43:02	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/21:43:02	Calculating coherence c_v value
+02-11-21/21:43:03	Building coherence model u_mass for k5_n100_a10_b0.01
+02-11-21/21:43:03	Calculating coherence u_mass value
+02-11-21/21:43:46	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/21:43:46	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/21:43:46	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/21:43:46	indexing already complete
+02-11-21/21:43:46	indexing complete
+02-11-21/21:43:46	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/21:43:46	learning already complete
+02-11-21/21:43:46	inference already complete
+02-11-21/21:43:46	unpacking vocab
+02-11-21/21:43:46	Loading documents
+02-11-21/21:43:46	unpacking doc_wids
+02-11-21/21:43:46	Building gensim dictionary
+02-11-21/21:43:47	Loading topics for k5_n100_a10_b0.01
+02-11-21/21:43:47	unpacking vocab
+02-11-21/21:43:47	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/21:43:47	Calculating coherence c_v value
+02-11-21/21:43:48	Building coherence model u_mass for k5_n100_a10_b0.01
+02-11-21/21:43:48	Calculating coherence u_mass value
+02-11-21/22:00:33	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/22:00:33	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/22:00:33	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/22:00:33	indexing already complete
+02-11-21/22:00:33	indexing complete
+02-11-21/22:00:33	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/22:00:33	learning already complete
+02-11-21/22:00:33	inference already complete
+02-11-21/22:00:33	unpacking vocab
+02-11-21/22:00:33	Loading documents
+02-11-21/22:00:33	unpacking doc_wids
+02-11-21/22:00:33	Building gensim dictionary
+02-11-21/22:00:33	Loading topics for k5_n100_a10_b0.01
+02-11-21/22:00:33	unpacking vocab
+02-11-21/22:00:33	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/22:00:33	Calculating coherence c_v value
+02-11-21/22:00:34	Building coherence model u_mass for k5_n100_a10_b0.01
+02-11-21/22:00:34	Calculating coherence u_mass value
+02-11-21/22:00:49	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/22:00:49	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/22:00:49	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/22:00:49	indexing already complete
+02-11-21/22:00:49	indexing complete
+02-11-21/22:00:49	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/22:00:49	learning already complete
+02-11-21/22:00:49	inference already complete
+02-11-21/22:00:49	unpacking vocab
+02-11-21/22:00:49	Loading documents
+02-11-21/22:00:49	unpacking doc_wids
+02-11-21/22:00:49	Building gensim dictionary
+02-11-21/22:00:49	Loading topics for k5_n100_a10_b0.01
+02-11-21/22:00:49	unpacking vocab
+02-11-21/22:00:49	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/22:00:49	Calculating coherence c_v value
+02-11-21/22:00:50	Building coherence model u_mass for k5_n100_a10_b0.01
+02-11-21/22:00:50	Calculating coherence u_mass value
+02-11-21/22:06:12	========== BTM INITIALIZE (k5_n100_a10_b0.01) ==========
+02-11-21/22:06:12	K 5 | alpha 10.0 | beta 0.01 | niter 100 | input data/pp_tweets.txt
+02-11-21/22:06:12	========== Index Docs (k5_n100_a10_b0.01) ==========
+02-11-21/22:06:12	indexing already complete
+02-11-21/22:06:12	indexing complete
+02-11-21/22:06:12	========== Topic Learning (k5_n100_a10_b0.01) ==========
+02-11-21/22:06:12	learning already complete
+02-11-21/22:06:12	inference already complete
+02-11-21/22:06:12	unpacking vocab
+02-11-21/22:06:12	Loading documents
+02-11-21/22:06:12	unpacking doc_wids
+02-11-21/22:06:12	Building gensim dictionary
+02-11-21/22:06:12	Loading topics for k5_n100_a10_b0.01
+02-11-21/22:06:12	unpacking vocab
+02-11-21/22:06:12	Building coherence model c_v for k5_n100_a10_b0.01
+02-11-21/22:06:12	Calculating coherence c_v value
+02-11-21/22:06:13	Building coherence model u_mass for k5_n100_a10_b0.01
+02-11-21/22:06:13	Calculating coherence u_mass value
