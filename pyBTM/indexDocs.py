@@ -6,16 +6,14 @@ import os
 
 w2id = {}
 
-def indexFile(pt, res_pt, csv=False, csvCol=2):
+def indexFile(pt, res_pt, csvCol=2):
     print('index file: '+str(pt))
     i = 0
-    wf = open(res_pt, 'w')
-    for l in open(pt):
+    wf = open(res_pt, 'w', encoding='utf8')
+    for l in open(pt, encoding='utf8'):
         i+=1
         if i % 10_000 == 0:
             print(i, end='\r')
-        if csv:
-            l = l.split(',')[csvCol]
 
         ws = l.strip().split()
         for w in ws:
@@ -29,7 +27,7 @@ def indexFile(pt, res_pt, csv=False, csvCol=2):
 
 def write_w2id(res_pt):
     print('vocab write to: '+str(res_pt))
-    wf = open(res_pt, 'w')
+    wf = open(res_pt, 'w', encoding='utf8')
     for w, wid in sorted(w2id.items(), key=lambda d:d[1]):
         print('%d\t%s' % (wid, w), file=wf)
 
@@ -47,15 +45,8 @@ if __name__ == '__main__':
     fmt = sys.argv[4] if len(sys.argv) > 4 else None
     csv_col = sys.argv[5] if len(sys.argv) > 5 else 2
 
-    if fmt == 'csv':
-        print("CSV!!")
-        csv_flag = True
-    else:
-        csv_flag = False
-    #print('BEGINNING INDEX')
-    indexFile(doc_pt, dwid_pt, csv_flag, csv_col)
+    print('BEGINNING INDEX')
+    indexFile(doc_pt, dwid_pt, csv_col)
     print('n(w)='+str(len(w2id)))
     if not os.path.exists(voca_pt):
-        #print(f'WRITING NEW VOCA AT {voca_pt}')
         write_w2id(voca_pt)
-        #print(f'WROTE NEW VOCA AT {voca_pt}')

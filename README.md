@@ -28,18 +28,20 @@ btm.learn_topics()
 ```
 
 ### Inference
+Infer topics for each document:
 ```
 btm.infer_documents()
 ```
 
 ### Evaluate Performance
+Evaluate performance of the model using CV and UMass coherence scores:
 ```
 coherence_models = btm.build_coherence_model(measures=['c_v', 'u_mass'])
 print([*map(lambda e : (e[0], e[1][1]), cm_dict.items())])
 ```
 
 ### View Results
-Show top 10 words for each topic
+Show top 10 words for each topic:
 ```
 topics = btm.get_topics(include_likelihood=False, use_words=True, L=10)
 ```
@@ -50,4 +52,4 @@ print(btm.info())
 ```
 
 #### References
-Yan, X., Guo, J., Lan, Y., & Cheng, X. (2013). A Biterm Topic Model for Short Texts. 11.
+Yan, X., Guo, J., Lan, Y., & Cheng, X. (2013). A Biterm Topic Model for Short Texts.

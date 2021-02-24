@@ -24,3 +24,37 @@ class Logger:
             print(message, file=sys.stdout, **kwds)
 
         print(message, file=self.log_file, **kwds)
+
+
+class Indexer:
+    def __init__(self):
+        pass
+
+    
+    @staticmethod
+    def indexFile(pt, res_pt):
+        w2id = {}
+        print('index file: '+str(pt))
+        i = 0
+        wf = open(res_pt, 'w', encoding='utf8')
+        for l in open(pt, encoding='utf8'):
+            i+=1
+            if i % 10_000 == 0:
+                print(i, end='\r')
+
+            ws = l.strip().split()
+            for w in ws:
+                if w not in w2id:
+                    w2id[w] = len(w2id)
+
+            wids = [w2id[w] for w in ws]
+            print(' '.join(map(str, wids)), file=wf)
+
+        return w2id
+
+    @staticmethod
+    def write_w2id(w2id, res_pt):
+        print('vocab write to: '+str(res_pt))
+        wf = open(res_pt, 'w', encoding='utf8')
+        for w, wid in sorted(w2id.items(), key=lambda d:d[1]):
+            print('%d\t%s' % (wid, w), file=wf)

@@ -1,5 +1,6 @@
 # Project specific
 pyBTM/output/
+pyBTM/btm_log.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

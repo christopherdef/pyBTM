@@ -1,6 +1,7 @@
 import sys
 import json
 import os
+from os import path
 from subprocess import call, Popen, PIPE, check_output
 import shlex
 import pathlib
@@ -10,7 +11,13 @@ from collections import Counter
 import gensim
 from gensim.models import CoherenceModel
 from shutil import rmtree
-from pyBTM import Logger
+from pyBTM import Logger, Indexer
+from pyBTM.exceptions import *
+import mmap
+
+
+import pdb
+
 
 class BTM:
     '''
@@ -20,7 +27,7 @@ class BTM:
 
     @param K -- number of topics
     @param alpha -- parameter for Dirichlet prior of P(z)
-    @param beta -- parameter Dirichlet prior of P(w|z)
+    @param beta -- parameter for Dirichlet prior of P(w|z)
     @param niter -- number of learning iterations
     @param save_step -- steps before saving results
 
@@ -56,48 +63,56 @@ class BTM:
                           }
 
         self.input_path = input_path
-        self.home_dir   = os.path.dirname(__file__)+'/'
+        self.home_dir   = path.join(path.realpath(path.dirname(__file__)))
 
         self.clean_on_del = clean_on_del
         self.verbose      = verbose
 
-        # TODO: make visible in __repr__ and __str__
         self.param_str = f'k{self.K}_n{self.niter}_a%g_b%g' % (self.alpha, self.beta)
 
-        self.log('='*10, f'BTM INITIALIZE ({self.param_str})', '='*10)
+        self.log('='*10, f'BTM INITIALIZE ({self.param_str})', '='*10)  
         self.log(f"K {self.K} | alpha {self.alpha} | beta {self.beta} | niter {self.niter} | input {self.input_path}")
 
         # locate or create important directories
-        input_fname = os.path.basename(self.input_path)
+        input_fname = path.basename(self.input_path)
         input_fname = input_fname[:input_fname.rfind('.')]
 
-        self.bin_dir = btm_bin_dir or f'{self.home_dir}BTM/'
-        self.output_dir = out_dir or f'{self.home_dir}output/{input_fname}_output/'
+        # directory for BTM binaries and the raw output model files
+        self.bin_dir = btm_bin_dir or path.join(self.home_dir, 'BTM')
+        self.output_dir = out_dir or path.join(self.home_dir, 'output', f'{input_fname}_output')
 
-        self.model_dir=f'{self.output_dir}model/{self.param_str}/'
+        self.model_dir=path.join(self.output_dir, 'model', self.param_str, '')
         pathlib.Path(self.model_dir).mkdir(parents=True, exist_ok=True)
 
+        # platform specific config
+        self.btm_bin = 'btm'
+        self.cmd_split = lambda s : shlex.split(s)
+        if 'win' in sys.platform:
+            self.btm_bin = 'btm-win'
+            self.cmd_split = lambda s : shlex.split(s, posix=0)
+        
         # the input docs for training
         self.doc_pt=f'{self.input_path}'
 
-        # TODO: START - duplicated code, very bad
         # output model docs
-        self.pz_pt  = f'{self.model_dir}{self.param_str}.pz'
-        self.pwz_pt = f'{self.model_dir}{self.param_str}.pw_z'
-        self.pzd_pt = f'{self.model_dir}{self.param_str}.pz_d'
+        model_doc_name = path.join(self.model_dir, self.param_str)
+        self.pz_pt  = f'{model_doc_name}.pz'
+        self.pwz_pt = f'{model_doc_name}.pw_z'
+        self.pzd_pt = f'{model_doc_name}.pz_d'
 
         # vocab and indexing docs
-        self.voca_pt=f'{self.output_dir}voca.txt'
-        self.dwid_pt=f'{self.output_dir}doc_wids.txt'
-        # TODO: END
+        self.voca_pt=path.join(self.output_dir, 'voca.txt')
+        self.dwid_pt=path.join(self.output_dir, 'doc_wids.txt')
 
         # set progress flags
-        self.indexing_complete = os.path.exists(self.voca_pt) and os.path.exists(self.dwid_pt)
-        self.learning_complete = os.path.exists(self.pz_pt) and os.path.exists(self.pwz_pt)
-        self.inference_complete = os.path.exists(self.pzd_pt)
+        self.indexing_complete = path.exists(self.voca_pt) and path.exists(self.dwid_pt)
+        self.learning_complete = path.exists(self.pz_pt) and path.exists(self.pwz_pt)
+        self.inference_complete = path.exists(self.pzd_pt)
 
+        self.log(self.info())
         if self.indexing_complete:
             self._load_wc()
+
 
     def info(self):
         '''
@@ -116,17 +131,25 @@ class BTM:
         inference - {status_str(self.inference_complete)}
 
         PATHS:
-        input={os.path.realpath(self.input_path)}
-        bin={os.path.realpath(self.bin_dir)}
-        out={os.path.realpath(self.output_dir)}
-        pz={os.path.realpath(self.pz_pt)}
-        pwz={os.path.realpath(self.pwz_pt)}
-        pzd={os.path.realpath(self.pzd_pt)}
-        voca={os.path.realpath(self.voca_pt)}
-        dwids={os.path.realpath(self.dwid_pt)}
+        home={path.realpath(self.home_dir)}
+        input={path.realpath(self.input_path)}
+        bin={path.realpath(self.bin_dir)}
+        out={path.realpath(self.output_dir)}
+        model={path.realpath(self.model_dir)}
+        pz={path.realpath(self.pz_pt)}
+        pwz={path.realpath(self.pwz_pt)}
+        pzd={path.realpath(self.pzd_pt)}
+        voca={path.realpath(self.voca_pt)}
+        dwids={path.realpath(self.dwid_pt)}
         '''.replace('\t', '')
 
         return info_str
+
+    def __str__(self):
+        return self.param_str
+        
+    def __repr__(self):
+        return str(self)
 
     def __del__(self):
         if self.clean_on_del:
@@ -148,25 +171,27 @@ class BTM:
         '''
         self.log(f"========== Index Docs ({self.param_str}) ==========")
 
-        # docs after indexing
-        self.dwid_pt=f'{self.output_dir}doc_wids.txt'
-
-        # vocabulary file
-        self.voca_pt=f'{self.output_dir}voca.txt'
-
         # we'll never want to index all the documents twice
-        if os.path.exists(self.voca_pt) and os.path.exists(self.dwid_pt) and not force:
+        if path.exists(self.voca_pt) and path.exists(self.dwid_pt) and not force:
             self.log('indexing already complete')
             self.indexing_complete = True
 
         # run indexing script
         else:
-            index_cmd = shlex.split(f'python {self.home_dir}indexDocs.py {self.doc_pt} {self.dwid_pt} {self.voca_pt}')
-            self.log(' '.join(index_cmd))
-            p = Popen(index_cmd, stdout=PIPE)
-            self.log(p.communicate()[0].decode()) # kinda crude way to pipe subprocess output back to caller
+            w2id = Indexer.indexFile(self.doc_pt, self.dwid_pt)
+            if not os.path.exists(self.voca_pt):
+                Indexer.write_w2id(w2id, self.voca_pt)
+
+            # ipt = path.join(self.home_dir, "indexDocs.py")
+            # print('IPTIPT', ipt)
+            # index_cmd = shlex.split(f'python IPT {self.doc_pt} {self.dwid_pt} {self.voca_pt}')
+            # index_cmd[1] = ipt
+            # self.log(' '.join(index_cmd))
+            # p = Popen(index_cmd, stdout=PIPE)
+            # self.log(p.communicate()[0].decode()) # kinda crude way to pipe subprocess output back to caller
 
             self.indexing_complete = True
+        
 
         self._load_wc()
         self.log('indexing complete')
@@ -190,10 +215,11 @@ class BTM:
 
         W = self._count_file_lines(self.voca_pt) # vocabulary size
 
-        # run btm est
-        btm_est_cmd = shlex.split(f'{self.bin_dir}btm est '+\
+        # run btm est 
+        btm_est_cmd = self.cmd_split(f'{path.join(self.bin_dir, self.btm_bin)} est '+\
                                   f'{self.K} {W} {self.alpha} {self.beta} {self.niter} {self.save_step} '+\
                                   f'{self.dwid_pt} {self.model_dir}')
+
         self.log(' '.join(btm_est_cmd))
         p = Popen(btm_est_cmd, stdout=PIPE)
         self.log(p.communicate()[0].decode())
@@ -218,8 +244,9 @@ class BTM:
             return
 
         self.log(f"========== Infer P(z|d) ({self.param_str}) ==========")
+        
 
-        btm_inf_cmd = shlex.split(f'{self.bin_dir}btm inf sum_b '+\
+        btm_inf_cmd = self.cmd_split(f'{path.join(self.bin_dir, self.btm_bin)} inf sum_b '+\
                                   f'{self.K} {self.alpha} {self.beta} {self.niter} '+\
                                   f'{self.dwid_pt} {self.model_dir}')
         self.log(' '.join(btm_inf_cmd))
@@ -285,9 +312,9 @@ class BTM:
         K = number of topics
         '''
         if not self.learning_complete:
-            raise Exception('topic learning has not been completed')
+            raise NotLearnedException
 
-        pz = open(self.pz_pt, 'r').read().rstrip().split(' ')
+        pz = open(self.pz_pt, 'r', encoding='utf8').read().rstrip().split(' ')
 
         return pz
 
@@ -299,8 +326,8 @@ class BTM:
         V = size of vocabulary
         '''
         if not self.learning_complete:
-            raise Exception('topic learning has not been completed')
-        pwz_file = open(self.pwz_pt, 'r')
+            raise NotLearnedException
+        pwz_file = open(self.pwz_pt, 'r', encoding='utf8')
         process_pwz_line = lambda line : list(dtype(e) for e in line.rstrip().split(' '))
 
         if lazy:
@@ -322,9 +349,9 @@ class BTM:
         N = number of documents
         '''
         if not self.inference_complete:
-            raise Exception('inference has not been completed')
+            raise NotInferredException
 
-        pzd_file = open(self.pzd_pt, 'r')
+        pzd_file = open(self.pzd_pt, 'r', encoding='utf8')
 
         if lazy:
             process_pzd_line = lambda line : line.rstrip().split(' ')
@@ -344,7 +371,7 @@ class BTM:
         Must index before calling
         '''
         if not self.indexing_complete:
-            raise Exception('indexing has not been completed')
+            raise NotIndexedException
 
         return self.word_count
 
@@ -353,9 +380,9 @@ class BTM:
         Returns number of documents (N)
         Must index before calling
         '''
-
+        
         if not self.indexing_complete:
-            raise Exception('indexing has not been completed')
+            raise NotIndexedException
 
         return self.doc_count
 
@@ -366,10 +393,10 @@ class BTM:
         Must index before calling
         '''
         if not self.indexing_complete:
-            raise Exception('indexing has not been completed')
+            raise NotIndexedException
 
         self.log('unpacking doc_wids')
-        return list(l.strip().split(' ') for l in open(self.dwid_pt, 'r'))
+        return list(l.strip().split(' ') for l in open(self.dwid_pt, 'r', encoding='utf8'))
 
     def get_word_freq(self, bow_docs=None):
         '''
@@ -379,7 +406,7 @@ class BTM:
         @param bow_docs -- bag-of-word representation of the documents (default self.get_dwids())
         '''
         if not self.indexing_complete:
-            raise Exception('indexing has not been completed')
+            raise NotIndexedException
 
         if bow_docs is None:
             bow_docs = self.get_dwids()
@@ -391,13 +418,15 @@ class BTM:
         Returns dictionary of the full vocabulary
         Maps words to word-ids
         Must index before calling
+
+        Note: parses vocab file directly, does not internally cache results
         '''
         if not self.indexing_complete:
-            raise Exception('indexing has not been completed')
+            raise NotIndexedException
 
         self.log('unpacking vocab')
         return dict((tuple([wid_w[0], wid_w[1]]) for wid_w in\
-                          [line.strip().split('\t') for line in open(self.voca_pt, 'r')]))
+                          [line.strip().split('\t') for line in open(self.voca_pt, 'r', encoding='utf8')]))
 
 
     # TODO: implement coherence stuff
@@ -409,7 +438,7 @@ class BTM:
         @param measures -- coherence measure to model (default c_v)
         '''
         if not self.inference_complete:
-            raise Exception('inference has not been completed')
+            raise NotInferredException
 
         self.log('Loading documents')
         docs = self.get_dwids() # documents are the same for each btm model
@@ -457,16 +486,17 @@ class BTM:
 
         @param pt -- path to target file
         '''
+        b_out = b'No error message available'
         try:
-            b_out = check_output(shlex.split(f'wc -l {pt}'))
+            b_out = check_output(self.cmd_split(f'wc -l {pt}'))
+            self._has_wc = True
             if len(b_out) > 0:
                 code = b_out.split(b' ')[0]
                 return int(code)
         except Exception:
-            print(f'Error calling wc: {bytes.decode(b_out, "utf8")}')
-
-            # backup word counter, ~10x longer for big files
-            import mmap
+            self.log(f'Error calling wc: {bytes.decode(b_out, "utf8")}')
+            
+            # backup word counter, ~10x longer for big files but wc is already on the order of seconds
             f = open(pt, 'r+b')
             mm = mmap.mmap(f.fileno(), 0)
 
@@ -474,7 +504,7 @@ class BTM:
             i =  mm.find(b'\n')
             nb = mm.size()
 
-            while i > 0 and i < mm.size():
+            while i > 0 and i < nb:
                 mm.seek(i+1)
                 i = mm.find(b'\n')
                 count += 1
@@ -486,5 +516,7 @@ class BTM:
         Helper for loading word and document counts
         Used in init and index_documents
         '''
+        if not self.indexing_complete:
+            raise NotIndexedException
         self.doc_count  = self.N = self._count_file_lines(self.dwid_pt)
         self.word_count = self.V = self._count_file_lines(self.voca_pt)
